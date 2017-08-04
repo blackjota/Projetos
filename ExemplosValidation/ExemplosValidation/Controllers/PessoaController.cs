@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -38,6 +39,18 @@ namespace ExemplosValidation.Controllers
         {
 
             return View(pessoa);
+        }
+
+        public ActionResult LoginUnico(string login)
+        {
+            var simulaBanco = new Collection<string>
+            {
+                "jaotostes",
+                "Cleyton",
+                "Aspxx",
+                "Atojx"
+            };
+            return Json(simulaBanco.All(x => x.ToLower() != login.ToLower()), JsonRequestBehavior.AllowGet);
         }
     }
 }
