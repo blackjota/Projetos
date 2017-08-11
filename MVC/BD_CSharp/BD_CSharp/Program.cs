@@ -7,6 +7,7 @@ namespace BD_CSharp
     {
         static void Main()
         {
+            var alunoAplicacao = new AlunoAplicacao();
             //Criando string connection 
             SqlConnection minhaConexao = new SqlConnection(@"data source=(localdb)\mssqllocaldb;Integrated Security=SSPI;Initial Catalog=BancoeMVC");
             // abrindo conexao com banco de dados
@@ -27,10 +28,15 @@ namespace BD_CSharp
             Console.WriteLine("Digite a data de Nascimento do aluno");
             string dataNasc = Console.ReadLine();
 
-            string strQueryInsert = $"INSERT INTO Aluno (Nome,Mae,DataNascimento) VALUES ('{nome}','{nomeMae}','{dataNasc}')";
-            SqlCommand cmdComandoInsert = new SqlCommand(strQueryInsert, minhaConexao);
-            cmdComandoInsert.ExecuteNonQuery();
+            var aluno = new Aluno
+            {
+                Nome = nome,
+                Mae = nomeMae,
+                DataNascimento = DateTime.Parse(dataNasc)
+            };
 
+            aluno.Id = 2;
+            alunoAplicacao.Alterar(aluno);
 
             string strQuerySelect = "SELECT * FROM Aluno";
             SqlCommand cmdComandoSelect = new SqlCommand(strQuerySelect, minhaConexao);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -11,11 +12,11 @@ namespace BD_CSharp
 
         public Contexto()
         {
-            minhaConexao = new SqlConnection(ConfigurationManager);
+            minhaConexao = new SqlConnection(ConfigurationManager.ConnectionStrings["TestesConfig"].ConnectionString);
             minhaConexao.Open();
         }
 
-        public void executaComando(string strQuery)
+        public void ExecutaComando(string strQuery)
         {
             var cmdComando = new SqlCommand
             {
